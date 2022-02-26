@@ -3,8 +3,9 @@ import { Formik, Form, Field } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import Alerta from './Alerta'
+import Spinner from './Spinner'
 
-const Formulario = ({ cliente }) => {
+const Formulario = ({ cliente, cargando }) => {
 
     const navigate = useNavigate()
 
@@ -42,120 +43,124 @@ const Formulario = ({ cliente }) => {
     }
 
     return (
-        <div className='bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto'>
-            <h1 className='text-gray-600 font-bold text-xl uppercase text-center'>Agregar Cliente</h1>
+        cargando ? <Spinner /> : (
 
-            <Formik
-                initialValues={{
-                    nombre: cliente?.nombre ?? "",
-                    empresa: cliente?.empresa ?? "",
-                    email: cliente?.email ?? "",
-                    telefono: cliente?.telefono ?? "",
-                    notas: cliente?.notas ?? ""
-                }}
-                enableReinitialize={true}
+            <div className='bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto'>
+                <h1 className='text-gray-600 font-bold text-xl uppercase text-center'>{cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}</h1>
 
-                onSubmit={async (values, { resetForm }) => {
-                    await handleSubmit(values)
-                    resetForm()
-                }}
-                validationSchema={nuevoClienteSchema}
-            >
-                {({ errors, touched }) => {
-                    return (
+                <Formik
+                    initialValues={{
+                        nombre: cliente?.nombre ?? "",
+                        empresa: cliente?.empresa ?? "",
+                        email: cliente?.email ?? "",
+                        telefono: cliente?.telefono ?? "",
+                        notas: cliente?.notas ?? ""
+                    }}
+                    enableReinitialize={true}
 
-                        <Form className='mt-10'>
-                            <div className='mb-6'>
-                                <label
-                                    className='text-gray-800'
-                                    htmlFor='nombre'>Nombre: </label>
+                    onSubmit={async (values, { resetForm }) => {
+                        await handleSubmit(values)
+                        resetForm()
+                    }}
+                    validationSchema={nuevoClienteSchema}
+                >
+                    {({ errors, touched }) => {
+                        return (
 
-                                <Field
-                                    placeholder="Nombre del Cliente"
-                                    id="nombre"
-                                    type="text"
-                                    className="mt-2 block w-full p-3 bg-gray-50"
-                                    name="nombre" />
-                                {errors.nombre && touched.nombre ? (
-                                    <Alerta>{errors.nombre}</Alerta>
-                                ) : null}
-                            </div>
+                            <Form className='mt-10'>
+                                <div className='mb-6'>
+                                    <label
+                                        className='text-gray-800'
+                                        htmlFor='nombre'>Nombre: </label>
 
-                            <div className='mb-4'>
-                                <label
-                                    className='text-gray-800'
-                                    htmlFor='empresa'>Empresa: </label>
+                                    <Field
+                                        placeholder="Nombre del Cliente"
+                                        id="nombre"
+                                        type="text"
+                                        className="mt-2 block w-full p-3 bg-gray-50"
+                                        name="nombre" />
+                                    {errors.nombre && touched.nombre ? (
+                                        <Alerta>{errors.nombre}</Alerta>
+                                    ) : null}
+                                </div>
 
-                                <Field
-                                    placeholder="Empresa del Cliente"
-                                    id="empresa"
-                                    type="text"
-                                    name="empresa"
-                                    className="mt-2 block w-full p-3 bg-gray-50" />
-                                {errors.empresa && touched.empresa ? (
-                                    <Alerta>{errors.empresa}</Alerta>
-                                ) : null}
-                            </div>
+                                <div className='mb-4'>
+                                    <label
+                                        className='text-gray-800'
+                                        htmlFor='empresa'>Empresa: </label>
 
-                            <div className='mb-4'>
-                                <label
-                                    className='text-gray-800'
-                                    htmlFor='email'>Email: </label>
+                                    <Field
+                                        placeholder="Empresa del Cliente"
+                                        id="empresa"
+                                        type="text"
+                                        name="empresa"
+                                        className="mt-2 block w-full p-3 bg-gray-50" />
+                                    {errors.empresa && touched.empresa ? (
+                                        <Alerta>{errors.empresa}</Alerta>
+                                    ) : null}
+                                </div>
 
-                                <Field
-                                    name="email"
-                                    placeholder="Email del Cliente"
-                                    id="email"
-                                    type="email"
-                                    className="mt-2 block w-full p-3 bg-gray-50" />
-                                {errors.email && touched.email ? (
-                                    <Alerta>{errors.email}</Alerta>
-                                ) : null}
-                            </div>
+                                <div className='mb-4'>
+                                    <label
+                                        className='text-gray-800'
+                                        htmlFor='email'>Email: </label>
 
-                            <div className='mb-4'>
-                                <label
-                                    className='text-gray-800'
-                                    htmlFor='telefono'>Teléfono: </label>
+                                    <Field
+                                        name="email"
+                                        placeholder="Email del Cliente"
+                                        id="email"
+                                        type="email"
+                                        className="mt-2 block w-full p-3 bg-gray-50" />
+                                    {errors.email && touched.email ? (
+                                        <Alerta>{errors.email}</Alerta>
+                                    ) : null}
+                                </div>
 
-                                <Field
-                                    name="telefono"
-                                    placeholder="Teléfono del Cliente"
-                                    id="telefono"
-                                    type="tel"
-                                    className="mt-2 block w-full p-3 bg-gray-50" />
-                                {errors.telefono && touched.telefono ? (
-                                    <Alerta>{errors.telefono}</Alerta>
-                                ) : null}
-                            </div>
+                                <div className='mb-4'>
+                                    <label
+                                        className='text-gray-800'
+                                        htmlFor='telefono'>Teléfono: </label>
 
-                            <div className='mb-4'>
-                                <label
-                                    className='text-gray-800'
-                                    htmlFor='notas'>Notas: </label>
+                                    <Field
+                                        name="telefono"
+                                        placeholder="Teléfono del Cliente"
+                                        id="telefono"
+                                        type="tel"
+                                        className="mt-2 block w-full p-3 bg-gray-50" />
+                                    {errors.telefono && touched.telefono ? (
+                                        <Alerta>{errors.telefono}</Alerta>
+                                    ) : null}
+                                </div>
 
-                                <Field
-                                    name="notas"
-                                    as="textarea"
-                                    placeholder="Notas del Cliente"
-                                    id="notas"
-                                    type="tel"
-                                    className="mt-2 block w-full p-3 bg-gray-50 h-40" />
-                            </div>
+                                <div className='mb-4'>
+                                    <label
+                                        className='text-gray-800'
+                                        htmlFor='notas'>Notas: </label>
 
-                            <input type="submit"
-                                value="Agregar Cliente"
-                                className='mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg' />
-                        </Form>
-                    )
-                }}
-            </Formik>
-        </div>
+                                    <Field
+                                        name="notas"
+                                        as="textarea"
+                                        placeholder="Notas del Cliente"
+                                        id="notas"
+                                        type="tel"
+                                        className="mt-2 block w-full p-3 bg-gray-50 h-40" />
+                                </div>
+
+                                <input type="submit"
+                                    value={cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}
+                                    className='mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg' />
+                            </Form>
+                        )
+                    }}
+                </Formik>
+            </div>
+        )
     )
 }
 
 Formulario.defaultProps = {
-    cliente: {}
+    cliente: {},
+    cargando: false
 }
 
 export default Formulario

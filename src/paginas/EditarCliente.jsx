@@ -1,6 +1,7 @@
 import Formulario from "../components/Formulario"
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import Spinner from "../components/Spinner"
 
 const EditarCliente = () => {
 
@@ -34,6 +35,8 @@ const EditarCliente = () => {
       <p className="mt-3">Utilice este formulario para editar datos del cliente</p>
 
       <Formulario
+      cargando={cargando}
+      setCargando={setCargando}
       cliente={cliente}
       ></Formulario>
     </>
