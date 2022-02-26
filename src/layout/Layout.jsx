@@ -16,12 +16,14 @@ const Layout = () => {
         <Link
           className={`${urlActual === '/clientes' ? 'text-blue-100' : 'text-white'} text-2xl block mt-2 hover:text-blue-100`}
           to="/clientes">Clientes
-          </Link>
+        </Link>
+
         <Link
           className={`${urlActual === '/clientes/nuevo' ? 'text-blue-100' : 'text-white'} text-2xl block mt-2 hover:text-blue-100`}
           to="/clientes/nuevo">Nuevo Cliente
-          </Link>
+        </Link>
       </div>
+
 
       <div className='md:w-3/4 p-10 md:h-screen overflow-scroll'>
         <Outlet />
