@@ -1,7 +1,6 @@
 import Formulario from "../components/Formulario"
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import Spinner from "../components/Spinner"
 
 const EditarCliente = () => {
 
@@ -34,11 +33,14 @@ const EditarCliente = () => {
       <h1 className="font-black text-4xl text-blue-900">Editar Cliente</h1>
       <p className="mt-3">Utilice este formulario para editar datos del cliente</p>
 
-      <Formulario
-      cargando={cargando}
-      setCargando={setCargando}
-      cliente={cliente}
-      ></Formulario>
+
+      {cliente?.nombre ? (
+
+        <Formulario
+          cargando={cargando}
+          cliente={cliente}
+        ></Formulario>
+      ): <p>Cliente ID no válido</p>}
     </>
   )
 }

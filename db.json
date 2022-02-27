@@ -1,28 +1,3 @@
 {
-  "clientes": [
-    {
-      "nombre": "Nombre",
-      "empresa": "Empresa",
-      "email": "email@email.com",
-      "telefono": "1162086623",
-      "notas": "",
-      "id": 1
-    },
-    {
-      "nombre": "Nombre",
-      "empresa": "Empresa",
-      "email": "correo@corre.com",
-      "telefono": "454594565",
-      "notas": "",
-      "id": 2
-    },
-    {
-      "nombre": "Nombre 3",
-      "empresa": "Empresa 3",
-      "email": "correo3@corre.com",
-      "telefono": "564654655",
-      "notas": "",
-      "id": 3
-    }
-  ]
+  "clientes": []
 }
