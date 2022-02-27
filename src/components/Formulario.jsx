@@ -32,36 +32,27 @@ const Formulario = ({ cliente, cargando }) => {
                         'Content-Type': 'application/json'
                     }
                 })
-
-
             } else {
-
                 const url = "http://localhost:4000/clientes"
-
-                const respuesta = await fetch(url, {
+                respuesta = await fetch(url, {
                     method: "POST",
                     body: JSON.stringify(valores),
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
-
             }
             await respuesta.json()
             navigate('/clientes')
-
         } catch (error) {
             console.log(error)
         }
-
     }
 
     return (
         cargando ? <Spinner /> : (
-
             <div className='bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto'>
                 <h1 className='text-gray-600 font-bold text-xl uppercase text-center'>{cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}</h1>
-
                 <Formik
                     initialValues={{
                         nombre: cliente?.nombre ?? "",
@@ -86,7 +77,6 @@ const Formulario = ({ cliente, cargando }) => {
                                     <label
                                         className='text-gray-800'
                                         htmlFor='nombre'>Nombre: </label>
-
                                     <Field
                                         placeholder="Nombre del Cliente"
                                         id="nombre"
@@ -160,9 +150,10 @@ const Formulario = ({ cliente, cargando }) => {
                                         className="mt-2 block w-full p-3 bg-gray-50 h-40" />
                                 </div>
 
-                                <input type="submit"
+                                <input
+                                    type="submit"
                                     value={cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}
-                                    className='mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg' />
+                                    className=' mt-5 cursor-pointer w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg' />
                             </Form>
                         )
                     }}
