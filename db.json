@@ -4,9 +4,17 @@
       "nombre": "Nombre",
       "empresa": "Empresa",
       "email": "email@email.com",
-      "telefono": "12345678",
+      "telefono": "123456789",
       "notas": "",
       "id": 1
+    },
+    {
+      "nombre": "Nombre 2",
+      "empresa": "Empresa 2",
+      "email": "email2@correo.com",
+      "telefono": "123456789",
+      "notas": "",
+      "id": 2
     }
   ]
 }
